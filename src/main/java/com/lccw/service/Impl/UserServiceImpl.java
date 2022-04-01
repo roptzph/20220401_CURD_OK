@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService {
     public List<User> selectAll(){
         return userMapper.selectAll();
     }
-    public List<User> selectWhere(Integer id,String cname,Integer age,String email){
-        return userMapper.selectWhere(id,cname,age,email);
+    public List<User> selectWhere(Integer id,String cname,Integer begin,Integer end,String email){
+        return userMapper.selectWhere(id,cname,begin,end,email);
     }
     public List<User> selectId(int id){
         return userMapper.selectId(id);

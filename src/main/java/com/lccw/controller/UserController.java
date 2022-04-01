@@ -34,9 +34,10 @@ public class UserController {
         return  userMapper.selectAll();
     }
     @RequestMapping("/querywhere")
-    public List<User> querywhere(Integer id,String cname,Integer age,String email){
-        return  userMapper.selectWhere(id,cname,age,email);
+    public List<User> querywhere(Integer id,String cname,Integer begin,Integer end,String email){
+        return  userMapper.selectWhere(id,cname,begin,end,email);
     }
+
     @RequestMapping("/queryid")
     public List<User> queryId(int id){
         return  userMapper.selectId(id);

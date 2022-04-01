@@ -12,6 +12,9 @@ spring:
       #type: com.alibaba.druid.pool.DruidDataSource
       username: root
       password: 123456
+      initial-size: 1
+      min-idle: 1
+      max-active: 5
 
 #thymeleaf
 thymeleaf:

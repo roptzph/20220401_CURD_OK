@@ -8,7 +8,7 @@ import java.util.List;
 public interface UserService {
     public int insertUser(User user);
     public List<User> selectAll();
-    public List<User> selectWhere(Integer id,String cname,Integer age,String email);
+    public List<User> selectWhere(Integer id,String cname,Integer begin,Integer end,String email);
 
     public List<User> selectId(int id);
     public int delId(int id);

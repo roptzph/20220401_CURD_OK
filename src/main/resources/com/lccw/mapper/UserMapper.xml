@@ -28,9 +28,14 @@
             <if test = "cname != null">
                 and cname like concat('%',#{cname},'%')
             </if>
-            <if test = "age != null">
-                and age like concat('%',#{age},'%')
+
+
+            <if test = "begin != null">
+                and age &gt;= #{begin}
+            </if><if test = "end != null">
+                and age &lt;= #{end}
             </if>
+
             <if test = "email != null">
                 and email like concat('%',#{email},'%')
             </if>
@@ -40,7 +45,6 @@
         select id, cname, age, email
         from user
         where id =#{id}
-
     </select>
     <delete id="delId"  parameterType="int">
         delete from  user
