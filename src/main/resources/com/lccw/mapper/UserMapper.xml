@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<!--编写在resources文件中创建 mapper/UserMapper.xml文件
+注意：
+1.namespace中需要与使用@Mapper的接口对应
+2.UserMapper.xml文件名称必须与使用@Mapper的接口一致
+3.标签中的id必须与@Mapper的接口中的方法名一致，且参数一致
+4.resultType对应包中类名称-->
+
+<mapper namespace="com.lccw.mapper.UserMapper">
+
+    <insert id="insertUser"  >
+        insert into user (id, cname, age, email)
+        VALUES (#{id},#{cname},#{age},#{email})
+    </insert>
+    <select id="selectAll" resultType="com.lccw.model.User">
+        select id, cname, age, email
+        from user
+    </select>
+    <select id="selectWhere"  resultType="com.lccw.model.User">
+        select id, cname, age, email
+        from user
+        <where>
+            <if test = "id != null">
+                id like concat('%',#{id},'%')
+            </if>
+            <if test = "cname != null">
+                and cname like concat('%',#{cname},'%')
+            </if>
+            <if test = "age != null">
+                and age like concat('%',#{age},'%')
+            </if>
+            <if test = "email != null">
+                and email like concat('%',#{email},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectId"  resultType="com.lccw.model.User">
+        select id, cname, age, email
+        from user
+        where id =#{id}
+
+    </select>
+    <delete id="delId"  parameterType="int">
+        delete from  user
+        where id = #{id}
+    </delete>
+
+    <!--更新部分或全部字段，参数多于一个按顺序用param1,2,3,4-->
+    <update id="updateId" parameterType="com.lccw.model.User">
+        UPDATE user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="cname != null">cname = #{cname},</if>
+            <if test="age != null">age = #{age},</if>
+            <if test="email != null">email = #{email},</if>
+        </trim>
+        WHERE id = #{id}
+    </update>
+
+</mapper>
